@@ -13,12 +13,10 @@ import bettercam
 import functions
 import settings as Settings
 from aimbot import AimbotTrackingLegit, FlickBot, SilentAim, FlickBotLegit, AimbotTrackingRage
-from auth import api
 from functions import GetKeyState, ReadMouseTXT, ObtainMouse, Anti_Recoil_Thread
 from gui import gui
 from overlay import Overlay
 from settings import Region, FOV_CENTER, FlickBotCoolDown, Yolov5_Path, Yolov5_Model
-
 
 send_next = [True]
 camera = bettercam.create(output_idx=0, output_color="BGRA")
@@ -26,28 +24,7 @@ UpdateMouse = ReadMouseTXT()
 Mouse, Status = ObtainMouse()
 
 def main():
-    #REMOVE KEY AUTH BELOW IF YOU'RE USING THIS YOURSELF
     try:
-        def getchecksum():
-                md5_hash = hashlib.md5()
-                file = open(''.join(sys.argv), "rb")
-                md5_hash.update(file.read())
-                digest = md5_hash.hexdigest()
-                return digest
-
-        keyauthapp = api(
-        name = "Aimbot", 
-        ownerid = "5JKLmPrXy2", 
-        secret = "a4d85c47e3a11a46fbc9e7dba7d8e12ef1c29b9c7b8d3f62c8c9f5a8b3e8d492", 
-        version = "1.0",
-        hash_to_check = getchecksum())
-
-        key = functions.key
-        keyauthapp.license(key)
-        
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    else:
         dpg.configure_item("LoginScreen", show=False)
 
         try:
