@@ -2,6 +2,7 @@ import threading
 from time import sleep as Sleep
 import settings as Settings
 from functions import GetKeyState, cooldown
+import kmNet
 
 def CalculateBezierPoint(t, p0, p1, p2):
     u = (1 - t)
@@ -184,3 +185,12 @@ def SilentAim(head_center_list, FOV_CENTER, ymax, ymin, Mouse, send_next, FlickB
     send_next[0] = False
     thread = threading.Thread(target=cooldown, args=(send_next,FlickBotCoolDown))
     thread.start()
+
+def kmNetFunction1():
+    kmNet.someFunction1()
+
+def kmNetFunction2():
+    kmNet.someFunction2()
+
+def kmNetFunction3():
+    kmNet.someFunction3()
