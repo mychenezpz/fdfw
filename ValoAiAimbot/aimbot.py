@@ -183,14 +183,19 @@ def SilentAim(head_center_list, FOV_CENTER, ymax, ymin, Mouse, send_next, FlickB
     Mouse.move(int(ReverseX), int(ReverseY))
 
     send_next[0] = False
-    thread = threading.Thread(target=cooldown, args=(send_next,FlickBotCoolDown))
+    thread = threading.Thread(target(cooldown, args=(send_next,FlickBotCoolDown))
     thread.start()
 
-def kmNetFunction1():
-    kmNet.someFunction1()
+def click(self):
+    kmNet.left(1)  # Press the left mouse button
+    self.random_delay()
+    kmNet.left(0)  # Release the left mouse button
 
-def kmNetFunction2():
-    kmNet.someFunction2()
+def press(self):
+    kmNet.left(1)  # Press the left mouse button
 
-def kmNetFunction3():
-    kmNet.someFunction3()
+def release(self):
+    kmNet.left(0)  # Release the left mouse button
+
+def move(self, x, y):
+    kmNet.move(x, y)  # Move the mouse relatively (x, y) pixel (it not absolute but relative)
