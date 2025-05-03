@@ -1,4 +1,0 @@
-vid=0x5610
-pid=0x0120
-manufacturer_string=Finalmouse
-serial=A3D489CF7E5B9C20
