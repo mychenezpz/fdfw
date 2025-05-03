@@ -9,8 +9,6 @@ import win32gui
 import overlay
 import settings as Settings
 from functions import (
-    submit_login, 
-    load_previous_key, 
     UpdateAimbotSmoothing, 
     UpdateFovRange, 
     SelectOutlineColorComboBox, 
@@ -111,17 +109,6 @@ def gui():
     with dpg.handler_registry():
         dpg.add_mouse_drag_handler(button=2, threshold=0.0, callback=drag_viewport)
 
-    #Login Screen
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    with dpg.window(tag="LoginScreen", label="", width=GuiSize[0], height=GuiSize[1], no_title_bar=True, no_move=True, no_resize=True, show=True):
-        LoginText = dpg.add_text("Login", color=(255, 255, 255, 255))
-        with dpg.group(horizontal=True, horizontal_spacing=10):
-            LoginTextbox = dpg.add_input_text(tag="LoginTextBox",width=150, hint="Enter Key Here")
-            LoginSubmit = dpg.add_button(label="Submit", width=50, height=20, callback=submit_login)
-            LoginOldKey = dpg.add_button(label="Old Key", width=50, height=20, callback=load_previous_key)
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
-
     #Config Menu
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     with dpg.window(tag="LoadConfigMenu", label="LoadConfigGui", width=GuiSize[0], height=GuiSize[1], no_title_bar=True, no_move=True, no_resize=True, show=False):   
@@ -213,12 +200,6 @@ def gui():
         Title_Text_Font         = dpg.add_font(f"{CurrentDirectory}\\Library\\Font\\font.ttf", 20)
         Default_Text_Font       = dpg.add_font(f"{CurrentDirectory}\\Library\\Font\\font.ttf", 15)
 
-        #Login Screen
-        dpg.bind_item_font(LoginText, Title_Text_Font)
-        dpg.bind_item_font(LoginTextbox, Default_Text_Font)
-        dpg.bind_item_font(LoginSubmit, Default_Text_Font)
-        dpg.bind_item_font(LoginOldKey, Default_Text_Font)
-        
         #WaterMark
         dpg.bind_item_font(WaterMarkLabel, Title_Text_Font)
 
@@ -392,4 +373,3 @@ def gui():
     dwm.DwmExtendFrameIntoClientArea(hwnd, margins)
     dpg.start_dearpygui()
     dpg.destroy_context()
-

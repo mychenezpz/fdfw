@@ -18,7 +18,6 @@ This project involved me training a custom model using YOLOv5 to create an exter
 - **Custom Sensitivity Adjustment**: Fine-tune aiming sensitivity to match your in game sensitivity.
 - **Load/Save Config System**: Easily save and load your preferred settings for future use.
 - **Randomized Application Name**: Instead of the app being namaed "Cheats" which could lead to bans, it will generate a random name like "XASJE4"
-- **Login Screen For KeyAuth**: To allow only certain users to use the application.
 
 ## <span style="color:#f3c00c;">Screenshots / Showcase</span>
 
@@ -54,8 +53,6 @@ This project involved me training a custom model using YOLOv5 to create an exter
 - Arduino USB-Host Shield
 
 ## <span style="color:#f3c00c;">Installation</span>
-
-*Side Node: If you're going to build this for yourself, you will have to edit the code to remove the login screen, I won't be showing how todo this, it's simple*
 
 1. Clone the repository:
     ```bash
