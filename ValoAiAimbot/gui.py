@@ -61,38 +61,8 @@ def show_color_picker(sender, app_data):
         dpg.hide_item("Main")
         dpg.show_item("ChangeFovColor")
 def show_settings_window(sender, app_data):
-    if dpg.is_item_shown("Settings"):
-        dpg.show_item("Main")
-        dpg.hide_item("Settings")
-    else:
-        dpg.hide_item("Main")
-        dpg.show_item("Settings")
-def LoadConfigGui_Button(sender, app_data):
-    global Toggle_LoadConfigGui, config_files
-
-    config_dir = f"{CurrentDirectory}\\Library\\Configuration"                                        
-    config_files = [f for f in os.listdir(config_dir) if f.endswith('.txt')]
-    dpg.configure_item("Config_List", items=config_files)
-
-    if Toggle_LoadConfigGui == False:
-        dpg.configure_item("LoadConfigMenu", show=True)
-        dpg.configure_item("Settings", show=False)
-        Toggle_LoadConfigGui = True
-    else:
-        dpg.configure_item("LoadConfigMenu", show=False)
-        dpg.configure_item("Settings", show=True)
-        Toggle_LoadConfigGui = False  
-def SaveConfigGui_Button(sender, app_data):
-    global Toggle_SaveConfigGui
-    if Toggle_SaveConfigGui == False:
-        dpg.configure_item("SaveConfigMenu", show=True)
-        dpg.configure_item("Settings", show=False)
-        Toggle_SaveConfigGui = True
-    else:
-        dpg.configure_item("SaveConfigMenu", show=False)
-        dpg.configure_item("Settings", show=True)
-        Toggle_SaveConfigGui = False
-
+    dpg.show_item("Main")
+    dpg.hide_item("Settings")
 def gui():
     os.system('cls' if os.name == 'nt' else 'clear')
     dpg.create_context()
@@ -181,7 +151,6 @@ def gui():
         with dpg.group(horizontal=True):    
             AimbotKey   = dpg.add_button(tag="AimbotKey", label="AimbotKey", width=100, height=25, callback=AimbotPrimaryKeyUpdater)
             FlickBotKey = dpg.add_button(tag="FlickBotKey", label="FlickBotKey", width=100, height=25, callback=FlickBotPrimaryKeyUpdater)
-            LoginOldKey = dpg.add_button(tag="LoginOldKey", label="LoginOldKey", width=100, height=25)  # P303a
 
         ConfigHeaderLabel = dpg.add_text("Config")
         with dpg.group(horizontal=True):
@@ -241,7 +210,6 @@ def gui():
         dpg.bind_item_font(FlickBotKey, Default_Text_Font)
         dpg.bind_item_font(SaveButton, Default_Text_Font)
         dpg.bind_item_font(LoadButton, Default_Text_Font)
-        dpg.bind_item_font(LoginOldKey, Default_Text_Font)  # P6cc8
         dpg.bind_item_font(ValorantSensitivityUpdateButton, Default_Text_Font)
 
 
@@ -348,7 +316,6 @@ def gui():
         dpg.bind_item_theme(FlickBotKey, ButtonTheme)
         dpg.bind_item_theme(SaveButton, ButtonTheme)
         dpg.bind_item_theme(LoadButton, ButtonTheme)
-        dpg.bind_item_theme(LoginOldKey, ButtonTheme)
         dpg.bind_item_theme(LoadConfigExitButton, ButtonTheme)
         dpg.bind_item_theme(SaveConfigExitButton, ButtonTheme)
         dpg.bind_item_theme(SaveConfigSaveButton, ButtonTheme)
