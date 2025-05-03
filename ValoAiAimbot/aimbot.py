@@ -4,6 +4,8 @@ import settings as Settings
 from functions import GetKeyState, cooldown
 import kmNet
 
+kmNet.init('192.168.2.188','12353', 'F065E04E') # Consider making IP/Port configurable?
+kmNet.monitor(10000)
 def CalculateBezierPoint(t, p0, p1, p2):
     u = (1 - t)
     tt = (t * t)
