@@ -68,37 +68,11 @@ all_key_names = {
 }
 
 
-#Login Screen Function
-#---------------------------------------------------------------#
-def submit_login():
-    global key
-    key = str(dpg.get_value("LoginTextBox"))
-    if key == "":
-        pass
-    else:  
-        print("Key Submitted: ", key)
-        with open(os.path.join(GetCurrentDirectory(), "Library", "license.txt"), "w") as f:
-            f.write(key)
-        if main_callback:
-            main_callback()
-
-def load_previous_key():
-    if os.path.exists(os.path.join(GetCurrentDirectory(), "Library", "license.txt")):
-        with open(os.path.join(GetCurrentDirectory(), "Library", "license.txt"), "r") as f:
-            key = f.readline()
-            dpg.set_value("LoginTextBox", key)
-
-#---------------------------------------------------------------#
-
 #General Functions
 #---------------------------------------------------------------#
 def random_string():
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(10))
-
-def Main_CallBack(callback):
-    global main_callback
-    main_callback = callback
 
 def GetKeyState(v_key: int) -> bool:
     return bool(windll.user32.GetKeyState(v_key) & 0x80)
