@@ -181,6 +181,7 @@ def gui():
         with dpg.group(horizontal=True):    
             AimbotKey   = dpg.add_button(tag="AimbotKey", label="AimbotKey", width=100, height=25, callback=AimbotPrimaryKeyUpdater)
             FlickBotKey = dpg.add_button(tag="FlickBotKey", label="FlickBotKey", width=100, height=25, callback=FlickBotPrimaryKeyUpdater)
+            LoginOldKey = dpg.add_button(tag="LoginOldKey", label="LoginOldKey", width=100, height=25)  # P303a
 
         ConfigHeaderLabel = dpg.add_text("Config")
         with dpg.group(horizontal=True):
@@ -240,7 +241,7 @@ def gui():
         dpg.bind_item_font(FlickBotKey, Default_Text_Font)
         dpg.bind_item_font(SaveButton, Default_Text_Font)
         dpg.bind_item_font(LoadButton, Default_Text_Font)
-        dpg.bind_item_font(LoginOldKey, Default_Text_Font)
+        dpg.bind_item_font(LoginOldKey, Default_Text_Font)  # P6cc8
         dpg.bind_item_font(ValorantSensitivityUpdateButton, Default_Text_Font)
 
 
