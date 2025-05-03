@@ -9,7 +9,6 @@ import dearpygui.dearpygui as dpg
 from colorama import Fore
 import overlay
 import settings as Settings
-from instruct import MouseInstruct, DeviceNotFoundError
 
 main_callback = None
 
@@ -43,7 +42,7 @@ all_key_names = {
     0x4D: 'M',                      0x4E: 'N',                  0x4F: 'O',                  0x50: 'P',
     0x51: 'Q',                      0x52: 'R',                  0x53: 'S',                  0x54: 'T',
     0x55: 'U',                      0x56: 'V',                  0x57: 'W',                  0x58: 'X',
-    0x59: 'Y',                      0x5A: 'Z',                  0x60: 'Numpad 0',           0x61: 'Numpad 1',
+    0x59: 'Y',                       0x5A: 'Z',                  0x60: 'Numpad 0',           0x61: 'Numpad 1',
     0x62: 'Numpad 2',               0x63: 'Numpad 3',           0x64: 'Numpad 4',           0x65: 'Numpad 5',
     0x66: 'Numpad 6',               0x67: 'Numpad 7',           0x68: 'Numpad 8',           0x69: 'Numpad 9',
     0x6A: 'Multiply Key',           0x6B: 'Add Key',            0x6C: 'Separator Key',      0x6D: 'Subtract Key',
@@ -114,29 +113,6 @@ def GetCurrentDirectory():
 def ChangeFovCircleColor(sender, app_data):
     Settings.FovColor = (app_data[0]*255, app_data[1]*255, app_data[2]*255)
     overlay.window.ChangeColor(sender, app_data)
-#---------------------------------------------------------------#
-
-#Mouse Functions / Game Boot Functions
-#---------------------------------------------------------------#
-def ReadMouseTXT():
-    with open(os.path.join(GetCurrentDirectory(),"Library", "Mouse.txt"), "r") as file:
-        for line in file:
-            if "vid" in line.lower():
-                Settings.UserMouseVid = int(line.split("=")[1].strip(), 16)
-            if "pid" in line.lower():
-                Settings.UserMousePid = int(line.split("=")[1].strip(), 16)
-            if "manufacturer_string" in line.lower():
-                Settings.UserMouseManufacturer = line.split("=")[1].strip()
-            if "serial" in line.lower():
-                Settings.UserMouseSerial = line.split("=")[1].strip()	
-
-def ObtainMouse():
-    try:
-        Mouse = MouseInstruct.getMouse(Settings.UserMouseVid, Settings.UserMousePid, Settings.UserMouseManufacturer, Settings.UserMouseSerial)
-        print(Fore.LIGHTGREEN_EX + "[+] Mouse found [+]\n")
-    except DeviceNotFoundError as e:
-        input(Fore.RED + "Mouse Not Found, Press Enter to Exit\n")
-    return Mouse, True
 #---------------------------------------------------------------#
 
 # UPDATE KEYBIND FUNCTIONS / Sensitivity Functions
@@ -243,17 +219,6 @@ def SelectOutlineColorComboBox(sender):
         Settings.Upper_Color = ([255, 128, 255])
     else:
         Settings.EnemyColor = False
-#---------------------------------------------------------------#
-
-# Thread
-#---------------------------------------------------------------#
-def Anti_Recoil_Thread():
-    while True:
-        while GetKeyState(0x01):
-            Settings.AntiRecoilValue += 0.025 * Settings.AntiRecoilMultiplier
-            time.sleep(0.0025)
-        else:
-            Settings.AntiRecoilValue = 0
 #---------------------------------------------------------------#
 
 # Confg Functions
@@ -371,5 +336,3 @@ def ActualSaveConfigButton():
             config_file.write(f'AimbotRageToggle={Settings.AimbotRageToggle}\n')
             config_file.write(f'CircleToggle={Settings.CircleToggle}\n')
             config_file.write(f'DotToggle={Settings.DotToggle}\n')
-
-

@@ -14,16 +14,15 @@ import functions
 import settings as Settings
 from aimbot import AimbotTrackingLegit, FlickBot, SilentAim, FlickBotLegit, AimbotTrackingRage
 from auth import api
-from functions import GetKeyState, ReadMouseTXT, ObtainMouse, Anti_Recoil_Thread
+from functions import GetKeyState
 from gui import gui
 from overlay import Overlay
 from settings import Region, FOV_CENTER, FlickBotCoolDown, Yolov5_Path, Yolov5_Model
+import kmNet
 
 
 send_next = [True]
 camera = bettercam.create(output_idx=0, output_color="BGRA")
-UpdateMouse = ReadMouseTXT()
-Mouse, Status = ObtainMouse()
 
 def main():
     #REMOVE KEY AUTH BELOW IF YOU'RE USING THIS YOURSELF
@@ -117,23 +116,22 @@ def main():
                     #Aimbot
                     if (GetKeyState(Settings.Aimbot_KeyOne) and closest_part_distance < Settings.Activation_Range and Settings.AimbotToggle == True):
                         if Settings.AimbotRageToggle == True:
-                            AimbotTrackingRage(head_center_list, FOV_CENTER, ymax, ymin, Mouse)
+                            AimbotTrackingRage(head_center_list, FOV_CENTER, ymax, ymin, kmNet)
                         else:
-                            AimbotTrackingLegit(head_center_list, FOV_CENTER, ymax, ymin, Mouse) 
+                            AimbotTrackingLegit(head_center_list, FOV_CENTER, ymax, ymin, kmNet) 
                     
                     # Flickbot
                     while (GetKeyState(Settings.FlickBot_KeyOne) and closest_part_distance < Settings.Activation_Range and send_next[0] == True and Settings.AimbotToggle == True and Settings.SilentAimToggle == False):
                         if Settings.FlickBotRageToggle == True:
-                            FlickBot(head_center_list, FOV_CENTER, ymax, ymin, Mouse, send_next, FlickBotCoolDown)
+                            FlickBot(head_center_list, FOV_CENTER, ymax, ymin, kmNet, send_next, FlickBotCoolDown)
                         else:
-                            FlickBotLegit(head_center_list, FOV_CENTER, ymax, ymin, Mouse, send_next, FlickBotCoolDown)
+                            FlickBotLegit(head_center_list, FOV_CENTER, ymax, ymin, kmNet, send_next, FlickBotCoolDown)
 
                     #SilentAim
                     if (GetKeyState(Settings.FlickBot_KeyOne) and closest_part_distance < Settings.Activation_Range and send_next[0] == True and Settings.AimbotToggle == True and Settings.SilentAimToggle == True):
-                        SilentAim(head_center_list, FOV_CENTER, ymax, ymin, Mouse, send_next, FlickBotCoolDown)
+                        SilentAim(head_center_list, FOV_CENTER, ymax, ymin, kmNet, send_next, FlickBotCoolDown)
 
         threading.Thread(target=start_main_code).start()
-        threading.Thread(target=Anti_Recoil_Thread).start()
 
 if __name__ == "__main__":
     functions.Main_CallBack(main)
