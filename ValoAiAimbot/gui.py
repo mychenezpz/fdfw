@@ -240,7 +240,6 @@ def gui():
         dpg.bind_item_font(FlickBotKey, Default_Text_Font)
         dpg.bind_item_font(SaveButton, Default_Text_Font)
         dpg.bind_item_font(LoadButton, Default_Text_Font)
-        dpg.bind_item_font(LoginSubmit, Default_Text_Font)
         dpg.bind_item_font(LoginOldKey, Default_Text_Font)
         dpg.bind_item_font(ValorantSensitivityUpdateButton, Default_Text_Font)
 
@@ -348,7 +347,6 @@ def gui():
         dpg.bind_item_theme(FlickBotKey, ButtonTheme)
         dpg.bind_item_theme(SaveButton, ButtonTheme)
         dpg.bind_item_theme(LoadButton, ButtonTheme)
-        dpg.bind_item_theme(LoginSubmit, ButtonTheme)
         dpg.bind_item_theme(LoginOldKey, ButtonTheme)
         dpg.bind_item_theme(LoadConfigExitButton, ButtonTheme)
         dpg.bind_item_theme(SaveConfigExitButton, ButtonTheme)
